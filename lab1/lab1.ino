@@ -10,8 +10,6 @@ M#include <Arduino.h>
 #define PIN_BUZZER_4 5
 #define PIN_BUTTON_OFF 6
 
-MD_TCS230 colorSensor(S2_OUT, S3_OUT, S0_OUT, S1_OUT);
-
 Button buttonOff(PIN_BUTTON_OFF);
 Buzzer buzzer(PIN_BUZZER);
 
