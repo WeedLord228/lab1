@@ -29,7 +29,7 @@ void setup()
 
 void loop() 
 {
-    if(roundIsPLaying)  
+    if(!roundIsPLaying)  
     {
       buzzer.playRound();
     }
