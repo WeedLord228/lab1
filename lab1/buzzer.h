@@ -19,6 +19,12 @@ public:
         melodyLength = 0;
     }
 
+    void setPin(int _pin)
+    {
+        pin = _pin;
+    }
+
+
     void turnSoundOn()
     {
         isEnabled = true;

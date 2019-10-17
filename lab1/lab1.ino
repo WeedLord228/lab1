@@ -11,12 +11,11 @@ M#include <Arduino.h>
 #define PIN_BUTTON_OFF 6
 
 Button buttonOff(PIN_BUTTON_OFF);
-Buzzer buzzer(PIN_BUZZER);
+Buzzer buzzer(PIN_BUZZER_1);
 
-int notes[] = {NOTE_G3, NOTE_SILENCE, NOTE_G3, NOTE_SILENCE, NOTE_G3, NOTE_SILENCE, NOTE_DS3, NOTE_SILENCE};
-double durations[] = {8, 8, 1, 8, 1, 8, 1, 24};
-int melodyLength = 8;
-
+int notes[] = {NOTE_G3, SILENCE_NOTE};
+double durations[] = {2,2};
+int melodyLength = 2;
 
 void setup()
 {
@@ -24,13 +23,26 @@ void setup()
     buzzer.turnSoundOn();
 
     Serial.begin(115200);
-    Serial.println("Started!");}
+    Serial.println("Started!");
+}
 
 void loop() 
 {
-    buzzer.playSound();
+    buzzer.playRound();
     if (buttonOff.wasPressed())
     {
         buzzer.turnSoundOff();
     }
+}
+
+void playRound()
+{
+    buzzer.setPin(PIN_BUZZER_1);
+    buzzer.playSound();
+    buzzer.setPin(PIN_BUZZER_2);
+    buzzer.playSound();
+    buzzer.setPin(PIN_BUZZER_3);
+    buzzer.playSound();
+    buzzer.setPin(PIN_BUZZER_4);
+    buzzer.playSound();
 }
