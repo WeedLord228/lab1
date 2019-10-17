@@ -16,6 +16,7 @@ Buzzer buzzer(PIN_BUZZER_1);
 int notes[] = {NOTE_G3, SILENCE_NOTE};
 double durations[] = {2,2};
 int melodyLength = 2;
+bool roundIsPlaying = false;
 
 void setup()
 {
@@ -28,7 +29,10 @@ void setup()
 
 void loop() 
 {
-    buzzer.playRound();
+    if(roundIsPLaying)  
+    {
+      buzzer.playRound();
+    }
     if (buttonOff.wasPressed())
     {
         buzzer.turnSoundOff();
@@ -37,6 +41,7 @@ void loop()
 
 void playRound()
 {
+    roundIsPlaying = true;
     buzzer.setPin(PIN_BUZZER_1);
     buzzer.playSound();
     buzzer.setPin(PIN_BUZZER_2);
@@ -45,4 +50,5 @@ void playRound()
     buzzer.playSound();
     buzzer.setPin(PIN_BUZZER_4);
     buzzer.playSound();
+    roundIsPlaying = false;
 }
