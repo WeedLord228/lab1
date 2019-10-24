@@ -1,4 +1,4 @@
-M#include <Arduino.h>
+#include <Arduino.h>
 #include <MD_TCS230.h>
 #include "pitches.h"
 #include "button.h"
