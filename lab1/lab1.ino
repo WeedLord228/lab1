@@ -13,8 +13,8 @@
 Button buttonOff(PIN_BUTTON_OFF);
 Buzzer buzzer(PIN_BUZZER_1);
 
-int notes[] = {NOTE_G3, SILENCE_NOT};
-double durations[] = {2,6};
+int notes[] = {NOTE_G3, SILENCE_NOTE};
+double durations[] = {2,2};
 int melodyLength = 2;
 bool roundIsPlaying = false;
 
