@@ -12,9 +12,8 @@
 Button buttonOff(PIN_BUTTON_OFF);
 Buzzer buzzer(PIN_BUZZER_1);
 
-
-int notes[] = {NOTE_G3, NOTE_B3};
-double durations[] = {2, 2};
+int notes[] = {NOTE_G3,NOTE_SILENCE, NOTE_B3,NOTE_SILENCE,NOTE_G3,NOTE_SILENCE,NOTE_B3,NOTE_SILENCE};
+double durations[] = {2,2,2,2,2,2,2,2};
 int pins[] = {2,3,4,5};
 int melodyLength = 2;
 
@@ -28,10 +27,10 @@ void setup() {
 }
 
 void loop() {
-  
     buzzer.playSound();
+    
     if (buttonOff.wasPressed())
     {
-        buzzer.turnSoundOff();
+      buzzer.turnSoundOff();
     }
 }

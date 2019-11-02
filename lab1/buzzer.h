@@ -8,7 +8,6 @@ public:
     Buzzer(int _pin)
     {
         pin = _pin;
-        pinMode(pin, OUTPUT);
 
         isEnabled = false;
         currentNote = 0;
@@ -58,16 +57,19 @@ public:
         if ((millis() - noteStartedMs) > duration)
         {
             int note = notes[currentNote];
-            pin = currentPin;
+             
             
-            if (note == NOTE_SILENCE)
+            if (note == NOTE_SILENCE){
                 noTone(pin);
+                currentPin = (currentPin+1)%4;
+                pin = pins[currentPin];
+            }
             else 
                 tone(pin, notes[currentNote]);
 
             noteStartedMs = millis();
             currentNote = (currentNote + 1)%melodyLength;
-            currentPin = (currentPin+1)%4;
+//            currentPin = (currentPin+1)%4;
         }
     }
 
