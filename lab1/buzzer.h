@@ -12,8 +12,10 @@ public:
 
         isEnabled = false;
         currentNote = 0;
+        currentPin = 0;
         noteStartedMs = 0;
 
+        pins = 0;
         notes = 0;
         durations = 0;
         melodyLength = 0;
@@ -40,13 +42,13 @@ public:
         noTone(pin);
     }
 
-    void setMelody(int _notes[], double _durations[], int _melodyLength)
+    void setMelody(int _notes[], double _durations[], int _melodyLength,int _pins[])
     {
+      pins = _pins;   
         notes = _notes;
         durations = _durations;
         melodyLength = _melodyLength;
     }
-
     void playSound()
     {
         if (!isEnabled)
@@ -56,6 +58,7 @@ public:
         if ((millis() - noteStartedMs) > duration)
         {
             int note = notes[currentNote];
+            pin = currentPin;
             
             if (note == NOTE_SILENCE)
                 noTone(pin);
@@ -64,6 +67,7 @@ public:
 
             noteStartedMs = millis();
             currentNote = (currentNote + 1)%melodyLength;
+            currentPin = (currentPin+1)%4;
         }
     }
 
@@ -71,9 +75,11 @@ private:
     int pin;
     bool isEnabled;
 
+    int currentPin;
     int currentNote;
     unsigned long noteStartedMs;
 
+    int* pins;
     int* notes;
     double* durations;
     int melodyLength;

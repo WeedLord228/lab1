@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include <MD_TCS230.h>
 #include "pitches.h"
 #include "button.h"
 #include "buzzer.h"
@@ -13,42 +12,26 @@
 Button buttonOff(PIN_BUTTON_OFF);
 Buzzer buzzer(PIN_BUZZER_1);
 
-int notes[] = {NOTE_G3, SILENCE_NOTE};
-double durations[] = {2,2};
+
+int notes[] = {NOTE_G3, NOTE_B3};
+double durations[] = {2, 2};
+int pins[] = {2,3,4,5};
 int melodyLength = 2;
-bool roundIsPlaying = false;
 
-void setup()
-{
-    buzzer.setMelody(notes, durations, melodyLength);
+void setup() {
+  pinMode(PIN_BUZZER_1,OUTPUT);
+  pinMode(PIN_BUZZER_2,OUTPUT);
+  pinMode(PIN_BUZZER_3,OUTPUT);
+  pinMode(PIN_BUZZER_4,OUTPUT);
+    buzzer.setMelody(notes, durations, melodyLength,pins);
     buzzer.turnSoundOn();
-
-    Serial.begin(115200);
-    Serial.println("Started!");
 }
 
-void loop() 
-{
-    if(!roundIsPLaying)  
-    {
-      buzzer.playRound();
-    }
+void loop() {
+  
+    buzzer.playSound();
     if (buttonOff.wasPressed())
     {
         buzzer.turnSoundOff();
     }
-}
-
-void playRound()
-{
-    roundIsPlaying = true;
-    buzzer.setPin(PIN_BUZZER_1);
-    buzzer.playSound();
-    buzzer.setPin(PIN_BUZZER_2);
-    buzzer.playSound();
-    buzzer.setPin(PIN_BUZZER_3);
-    buzzer.playSound();
-    buzzer.setPin(PIN_BUZZER_4);
-    buzzer.playSound();
-    roundIsPlaying = false;
 }
